@@ -1,0 +1,22 @@
+.spl_dev-card_header {
+    grid-area: top;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    border-radius: 8em 8em 0 0;
+}
+
+.spl_dev-card_header_gem {
+    width: 40em;
+    height: 35.3685em;
+    position: absolute;
+    top: 2em;
+    right: 5em;
+    z-index: 2;
+}
+
+.spl_card-costs {
+    grid-area: cost;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+}
