@@ -1,0 +1,51 @@
+.spl_number {
+    background-size: 1000% 300%;
+    background-image: url("../../asset/numbers_sheet.png");
+    width: 40rem;
+    height: 40rem;
+    position: relative;
+}
+
+.spl_number[data-number="0"] {
+    background-position: -900% 0;
+}
+
+.spl_number[data-number="1"] {
+    background-position: 0 -200%;
+}
+
+.spl_number[data-number="2"] {
+    background-position: -100% -200%;
+}
+
+.spl_number[data-number="3"] {
+    background-position: -200% -200%;
+}
+
+.spl_number[data-number="4"] {
+    background-position: -300% -200%;
+}
+
+.spl_number[data-number="5"] {
+    background-position: -400% -200%;
+}
+
+.spl_number[data-number="6"] {
+    background-position: -500% -200%;
+}
+
+.spl_number[data-number="7"] {
+    background-position: -600% -200%;
+}
+
+.spl_number[data-number="8"] {
+    background-position: -700% -200%;
+}
+
+.spl_number[data-number="9"] {
+    background-position: -800% -200%;
+}
+
+.spl_number[data-number="10"] {
+    background-position: -900% -200%;
+}
