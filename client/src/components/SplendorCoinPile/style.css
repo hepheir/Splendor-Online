@@ -1,79 +1,31 @@
-.spl_coin-pile_container {
+.spl_coin-pile {
     width: 70rem;
     height: 122rem;
     position: relative;
 }
 
-.spl_coin-pile {
-    background-size: 600% 100%;
-    background-image: url(../../asset/tokens.png);
-    border-radius: 50%;
-    margin: 10rem;
-    z-index: 3;
-    width: 70rem;
-    height: 70rem;
-    position: absolute;
-}
-
-.spl_coin-pile::after {
-    border-radius: 50%;
-    width: 70rem;
-    height: 64rem;
-    position: absolute;
-    top: 3rem;
-    left: 0;
-    box-shadow: -1rem 1rem 2rem #000;
-    content: "";
-}
-
-.spl_coin-pile:last-child {
+.spl_coin-pile_coin:last-child {
     cursor: pointer;
 }
 
-.spl_coin-pile:last-child:hover {
+.spl_coin-pile_coin:last-child:hover::after {
     box-shadow: 0 0 4rem 4rem rgba(63, 169, 255, 0.898);
 }
 
 /* 쌓인 높이에 따라 */
 
-.spl_coin-pile:nth-child(4) {
+.spl_coin-pile_coin:nth-child(4) {
     margin-top: 18rem;
 }
 
-.spl_coin-pile:nth-child(3) {
+.spl_coin-pile_coin:nth-child(3) {
     margin-top: 26rem;
 }
 
-.spl_coin-pile:nth-child(2) {
+.spl_coin-pile_coin:nth-child(2) {
     margin-top: 34rem;
 }
 
-.spl_coin-pile:nth-child(1) {
+.spl_coin-pile_coin:nth-child(1) {
     margin-top: 42rem;
-}
-
-/* Grem Types */
-
-[data-gem-type="emerald"] .spl_coin-pile {
-    background-position-x: 0;
-}
-
-[data-gem-type="diamond"] .spl_coin-pile {
-    background-position-x: -100%;
-}
-
-[data-gem-type="sapphire"] > .spl_coin-pile {
-    background-position-x: -200%;
-}
-
-[data-gem-type="onyx"] > .spl_coin-pile {
-    background-position-x: -300%;
-}
-
-[data-gem-type="ruby"] > .spl_coin-pile {
-    background-position-x: -400%;
-}
-
-[data-gem-type="gold"] > .spl_coin-pile {
-    background-position-x: -500%;
 }
