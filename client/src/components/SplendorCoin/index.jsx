@@ -8,7 +8,7 @@ class SplendorCoin extends React.Component {
         const { gem_type, className } = this.props;
 
         return (
-            <div className={classNames("spl_coin", className)} gem_type={gem_type} />
+            <div className={classNames("spl_coin", className)} data-gem-type={gem_type} />
         );
     }
 }
