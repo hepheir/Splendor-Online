@@ -1,0 +1,38 @@
+.spl_noble-cost {
+    width: 30rem;
+    height: 30rem;
+    margin: 2rem;
+    background-size: 1000% 300%;
+    background-image: url(../../asset/numbers_sheet.png);
+    background-position-y: 0;
+    position: relative;
+}
+
+.spl_noble-cost_number {
+    width: 30rem;
+    height: 30rem;
+}
+
+.spl_noble-cost_mini-gem {
+    top: 8rem;
+}
+
+.spl_noble-cost[data-gem-type="onyx"] {
+    background-position-x: 0;
+}
+
+.spl_noble-cost[data-gem-type="diamond"] {
+    background-position-x: -100%;
+}
+
+.spl_noble-cost[data-gem-type="sapphire"] {
+    background-position-x: -200%;
+}
+
+.spl_noble-cost[data-gem-type="emerald"] {
+    background-position-x: -300%;
+}
+
+.spl_noble-cost[data-gem-type="ruby"] {
+    background-position-x: -400%;
+}

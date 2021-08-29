@@ -1,0 +1,30 @@
+.spl_gem {
+    background-size: 500% 100%;
+    background-image: url("../../asset/gems.png");
+    width: 40rem;
+    height: 35.3685rem;
+    position: absolute;
+    top: 2rem;
+    right: 5rem;
+    z-index: 2;
+}
+
+.spl_gem[data-gem-type="diamond"] {
+    background-position-x: 0;
+}
+
+.spl_gem[data-gem-type="sapphire"] {
+    background-position-x: -100%;
+}
+
+.spl_gem[data-gem-type="onyx"] {
+    background-position-x: -200%;
+}
+
+.spl_gem[data-gem-type="ruby"] {
+    background-position-x: -300%;
+}
+
+.spl_gem[data-gem-type="emerald"] {
+    background-position-x: -400%;
+}

@@ -1,0 +1,31 @@
+.spl_coin-pile {
+    width: 70rem;
+    height: 122rem;
+    position: relative;
+}
+
+.spl_coin-pile_coin:last-child {
+    cursor: pointer;
+}
+
+.spl_coin-pile_coin:last-child:hover::after {
+    box-shadow: 0 0 4rem 4rem rgba(63, 169, 255, 0.898);
+}
+
+/* 쌓인 높이에 따라 */
+
+.spl_coin-pile_coin:nth-child(4) {
+    margin-top: 18rem;
+}
+
+.spl_coin-pile_coin:nth-child(3) {
+    margin-top: 26rem;
+}
+
+.spl_coin-pile_coin:nth-child(2) {
+    margin-top: 34rem;
+}
+
+.spl_coin-pile_coin:nth-child(1) {
+    margin-top: 42rem;
+}

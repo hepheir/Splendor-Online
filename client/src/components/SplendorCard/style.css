@@ -1,0 +1,132 @@
+.spl_card {
+    width: 120rem;
+    height: 160rem;
+    border: 2rem solid #fff;
+    display: grid;
+    margin: 15rem;
+    grid-template-areas:
+        "top top top"
+        ". . . "
+        "cost cost ."
+        "cost cost ."
+        "cost cost .";
+    grid-template-rows: 1.2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-size: 500% 600%;
+    background-image: url("../../asset/cards.jpg");
+    box-shadow: -4rem 4rem 12rem #000;
+    border-radius: 8rem;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Card backgrounds */
+.spl_card[data-card-illustration="drawpile.lv1"] {
+    background-position: 0 -500%;
+}
+.spl_card[data-card-illustration="drawpile.lv2"] {
+    background-position: -100% -500%;
+}
+.spl_card[data-card-illustration="drawpile.lv3"] {
+    background-position: -200% -500%;
+}
+
+.spl_card[data-card-illustration="sapphire.mine"] {
+    background-position: 0 0;
+}
+
+.spl_card[data-card-illustration="sapphire.lapidary"] {
+    background-position: -100% 0;
+}
+
+.spl_card[data-card-illustration="sapphire.elephants"] {
+    background-position: -200% 0;
+}
+
+.spl_card[data-card-illustration="sapphire.diamant_shop"] {
+    background-position: -300% 0;
+}
+
+.spl_card[data-card-illustration="sapphire.venice"] {
+    background-position: -400% 0;
+}
+
+.spl_card[data-card-illustration="onyx.mine"] {
+    background-position: 0 -100%;
+}
+
+.spl_card[data-card-illustration="onyx.camels"] {
+    background-position: -100% -100%;
+}
+
+.spl_card[data-card-illustration="onyx.lapidary"] {
+    background-position: -200% -100%;
+}
+
+.spl_card[data-card-illustration="onyx.street1"] {
+    background-position: -300% -100%;
+}
+
+.spl_card[data-card-illustration="onyx.street2"] {
+    background-position: -400% -100%;
+}
+
+.spl_card[data-card-illustration="ruby.mine"] {
+    background-position: 0 -200%;
+}
+
+.spl_card[data-card-illustration="ruby.lapidary"] {
+    background-position: -100% -200%;
+}
+
+.spl_card[data-card-illustration="ruby.felucca"] {
+    background-position: -200% -200%;
+}
+
+.spl_card[data-card-illustration="ruby.building"] {
+    background-position: -300% -200%;
+}
+
+.spl_card[data-card-illustration="ruby.equestrian_statue"] {
+    background-position: -400% -200%;
+}
+
+.spl_card[data-card-illustration="emerald.mine"] {
+    background-position: 0 -300%;
+}
+
+.spl_card[data-card-illustration="emerald.carrack"] {
+    background-position: -100% -300%;
+}
+
+.spl_card[data-card-illustration="emerald.guy"] {
+    background-position: -200% -300%;
+}
+
+.spl_card[data-card-illustration="emerald.timbered_house"] {
+    background-position: -300% -300%;
+}
+
+.spl_card[data-card-illustration="emerald.bridge"] {
+    background-position: -400% -300%;
+}
+
+.spl_card[data-card-illustration="diamond.mine"] {
+    background-position: 0 -400%;
+}
+
+.spl_card[data-card-illustration="diamond.people_in_snow"] {
+    background-position: -100% -400%;
+}
+
+.spl_card[data-card-illustration="diamond.lapidary"] {
+    background-position: -200% -400%;
+}
+
+.spl_card[data-card-illustration="diamond.gioielleria"] {
+    background-position: -300% -400%;
+}
+
+.spl_card[data-card-illustration="diamond.building"] {
+    background-position: -400% -400%;
+}
