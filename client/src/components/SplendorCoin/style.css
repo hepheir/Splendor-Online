@@ -1,0 +1,47 @@
+.spl_coin {
+    background-size: 600% 100%;
+    background-image: url(../../asset/tokens.png);
+    border-radius: 50%;
+    margin: 10rem;
+    z-index: 3;
+    width: 70rem;
+    height: 70rem;
+    position: absolute;
+}
+
+.spl_coin::after {
+    border-radius: 50%;
+    width: 70rem;
+    height: 64rem;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    box-shadow: -1rem 1rem 2rem #000;
+    content: "";
+}
+
+/* Grem Types */
+
+.spl_coin[data-gem-type="emerald"] {
+    background-position-x: 0;
+}
+
+.spl_coin[data-gem-type="diamond"] {
+    background-position-x: -100%;
+}
+
+.spl_coin[data-gem-type="sapphire"] {
+    background-position-x: -200%;
+}
+
+.spl_coin[data-gem-type="onyx"] {
+    background-position-x: -300%;
+}
+
+.spl_coin[data-gem-type="ruby"] {
+    background-position-x: -400%;
+}
+
+.spl_coin[data-gem-type="gold"] {
+    background-position-x: -500%;
+}
