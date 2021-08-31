@@ -2,15 +2,15 @@
     grid-area: top;
     background-color: rgba(255, 255, 255, 0.5);
     position: relative;
-    border-radius: 8em 8em 0 0;
+    border-radius: 8rem 8rem 0 0;
 }
 
 .spl_dev-card_header_gem {
-    width: 40em;
-    height: 35.3685em;
+    width: 40rem;
+    height: 35.3685rem;
     position: absolute;
-    top: 2em;
-    right: 5em;
+    top: 2rem;
+    right: 5rem;
     z-index: 2;
 }
 
