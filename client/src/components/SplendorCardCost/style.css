@@ -1,6 +1,6 @@
 .spl_card-cost {
-    width: 40rem;
-    height: 40rem;
+    width: 40em;
+    height: 40em;
     background-size: 1000% 300%;
     background-image: url("../../asset/numbers_sheet.png");
     background-position-y: -100%;
