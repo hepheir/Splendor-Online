@@ -1,20 +1,27 @@
-const HOST = 'http://172.20.10.6:5000';
-
+const HOST = 'http://localhost:5000';
+const ASSET_INFO_CACHE = {};
 
 async function api_get_asset_info(asset_type, asset_id) {
     const path = `/game_object/${asset_type}/${asset_id}`;
-    const response = await fetch(
-        HOST + path,
-        {
-            method: 'GET',
-            mode: 'cors',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'text/plain',
-            },
-        }
-    )
-    return await response.json();
+    if (path in ASSET_INFO_CACHE) {
+        console.log('Cache hit!'); // DEBUG
+        return ASSET_INFO_CACHE[path];
+    }
+    else {
+        console.log('Cache miss!'); // DEBUG
+        const response = await fetch(
+            HOST + path,
+            {
+                method: 'GET',
+                mode: 'cors',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'text/plain',
+                },
+            }
+        )
+        return ASSET_INFO_CACHE[path] = await response.json();
+    }
 }
 
 async function api_get_game_status_card_supplier(card_level) {
