@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
 
+import InGame from './pages/InGame';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    Splendor
+    <InGame/>
   </React.StrictMode>,
   document.getElementById('root')
 );
