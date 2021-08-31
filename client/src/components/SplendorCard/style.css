@@ -3,7 +3,7 @@
     height: 160rem;
     border: 2rem solid #fff;
     display: grid;
-    margin: 15rem;
+    margin: 10rem;
     grid-template-areas:
         "top top top"
         ". . . "

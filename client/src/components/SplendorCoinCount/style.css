@@ -11,7 +11,7 @@
 .spl_coin-count_number {
     position: absolute;
     top: 0;
-    left: -4rem;
+    left: -2rem;
     z-index: 4;
 }
 
@@ -25,7 +25,7 @@
 .spl_hand_counts_coin-count_coin {
     margin: 0;
     position: absolute;
-    bottom: 0;
+    bottom: -4rem;
     left: 0;
     z-index: 3;
 }

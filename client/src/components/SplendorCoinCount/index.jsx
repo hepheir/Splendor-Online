@@ -11,7 +11,9 @@ class SplendorCoinCount extends React.Component {
         const { gem_type, count, className } = this.props;
         return (
             <div className={classNames("spl_coin-count", className)}>
-                <SplendorNumber className="spl_coin-count_number">{count}</SplendorNumber>
+                <SplendorNumber className="spl_coin-count_number">
+                    {count}
+                </SplendorNumber>
                 <SplendorCoin
                     className="spl_hand_counts_coin-count_coin"
                     gem_type={gem_type}
