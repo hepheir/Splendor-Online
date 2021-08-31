@@ -7,6 +7,10 @@
     box-sizing: revert;
 }
 
+.spl_card-count.spl_depleted {
+    opacity: 0.4;
+}
+
 .spl_card-count_number {
     position: absolute;
     top: 0;

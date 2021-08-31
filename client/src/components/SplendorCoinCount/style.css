@@ -8,6 +8,10 @@
     box-sizing: revert;
 }
 
+.spl_coin-count.spl_depleted {
+    opacity: 0.4;
+}
+
 .spl_coin-count_number {
     position: absolute;
     top: 0;
