@@ -1,8 +1,8 @@
 import React from "react";
 
-import "./style.css";
-
 import SplendorCard from "../SplendorCard";
+
+import "./style.css";
 
 class SplendorCardDrawPile extends React.Component {
     render() {

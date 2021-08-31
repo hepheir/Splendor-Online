@@ -1,13 +1,13 @@
 import classNames from "classnames";
 import React from "react";
 
-import "./style.css";
-
 import SplendorCoin from "../SplendorCoin";
+
+import "./style.css";
 
 class SplendorCoinPile extends React.Component {
     render() {
-        const { gem_type, count, className } = this.props;
+        const { gem_type, count, className, style } = this.props;
         const stack = [];
 
         for (let i = 0; i < count; i++) {
@@ -16,7 +16,11 @@ class SplendorCoinPile extends React.Component {
         }
 
         return (
-            <div className={classNames("spl_coin-pile", className)}>
+            <div
+                className={classNames("spl_coin-pile", className)}
+                style={style}
+                data-gem-type={gem_type}
+            >
                 {stack}
             </div>
         );
