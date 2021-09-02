@@ -11,9 +11,27 @@ class SplendorCoinPile extends React.Component {
         const { gem_type, count, className, style } = this.props;
         const stack = [];
 
-        for (let i = 0; i < count; i++) {
-            const unique_key = `spl_coin-pile_${gem_type}_${i}`;
-            stack.push(<SplendorCoin className="spl_coin-pile_coin" gem_type={gem_type} key={unique_key} />);
+        if (!count) {
+            const unique_key = `spl_coin-pile_${gem_type}`;
+            stack.push(
+                <SplendorCoin
+                    className="spl_coin-pile_coin spl_depleted"
+                    gem_type={gem_type}
+                    key={unique_key}
+                />
+            )
+        }
+        else {
+            for (let i = 0; i < count; i++) {
+                const unique_key = `spl_coin-pile_${gem_type}_${i}`;
+                stack.push(
+                    <SplendorCoin
+                        className="spl_coin-pile_coin"
+                        gem_type={gem_type}
+                        key={unique_key}
+                    />
+                );
+            }
         }
 
         return (
