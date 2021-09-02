@@ -226,6 +226,11 @@ main.main-board {
     flex-shrink: 0;
 }
 
+.spl_card-supplier_card-counter {
+    top: -8rem;
+    left: -8rem;
+}
+
 .spl_card-supplier_card-container:hover {
     box-shadow: 0 0 4rem 4rem rgba(63, 169, 255, 0.898);
 }

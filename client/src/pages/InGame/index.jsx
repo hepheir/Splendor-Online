@@ -1,5 +1,6 @@
 import React from "react";
 
+import CounterBadge from "../../components/CounterBadge";
 import SplendorCardCount from "../../components/SplendorCardCount";
 import SplendorCardDevelopmentCard from "../../components/SplendorCardDevelopmentCard";
 import SplendorCardDrawPile from "../../components/SplendorCardDrawPile";
@@ -57,18 +58,30 @@ class InGame extends React.Component {
             ],
             table: {
                 tiles: [1, 3, 5, 7, 9],
-                cards: {
-                    3: [72, 89, 76, 82],
-                    2: [44, 64, 57, 50],
-                    1: [18, 27, 5, 21],
-                },
+                card_rows: [
+                    {
+                        level: 3,
+                        drawables: 16,
+                        revealeds: [72, 89, 76, 82],
+                    },
+                    {
+                        level: 2,
+                        drawables: 21,
+                        revealeds: [44, 64, 57, 50],
+                    },
+                    {
+                        level: 1,
+                        drawables: 8,
+                        revealeds: [18, 27, 5, 21],
+                    },
+                ],
                 coins: {
-                    diamond: 5,
-                    sapphire: 5,
+                    diamond: 4,
+                    sapphire: 1,
                     emerald: 5,
-                    ruby: 5,
-                    onyx: 5,
-                    gold: 5,
+                    ruby: 4,
+                    onyx: 2,
+                    gold: 2,
                 },
             },
             logs: [
@@ -148,8 +161,7 @@ class InGame extends React.Component {
     }
 
     renderCardSupplier() {
-        const { cards } = this.state.table;
-        const _LEVEL_ORDER = [3, 2, 1];
+        const { card_rows } = this.state.table;
         const f_card_container = (card_id) => {
             const _UNIQUE_KEY = `spl_card-supplier_card.${card_id}`;
             return (
@@ -163,20 +175,26 @@ class InGame extends React.Component {
                 </div>
             );
         };
-        const f_card_supplier = (card_level) => {
-            const _UNIQUE_KEY = `spl_card-supplier.${card_level}`;
+        const f_card_supplier = (card_row) => {
+            const { level, drawables, revealeds } = card_row;
+            const _UNIQUE_KEY = `spl_card-supplier.${level}`;
             return (
                 <div className="spl_card-supplier" key={_UNIQUE_KEY}>
                     <div className="spl_card-supplier_card-container">
-                        <SplendorCardDrawPile level={card_level} />
+                        <SplendorCardDrawPile level={level} >
+                            <CounterBadge
+                                className="spl_card-supplier_card-counter"
+                                count={drawables}
+                            />
+                        </SplendorCardDrawPile>
                     </div>
-                    {cards[card_level].map(f_card_container)}
+                    {revealeds.map(f_card_container)}
                 </div>
             );
         };
         return (
             <div className="spl_card-suppliers">
-                {_LEVEL_ORDER.map(f_card_supplier)}
+                {card_rows.map(f_card_supplier)}
             </div>
         );
     }

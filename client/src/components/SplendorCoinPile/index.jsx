@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 
+import CounterBadge from "../CounterBadge";
 import SplendorCoin from "../SplendorCoin";
 
 import "./style.css";
@@ -21,7 +22,16 @@ class SplendorCoinPile extends React.Component {
                 style={style}
                 data-gem-type={gem_type}
             >
-                {stack}
+                <CounterBadge
+                    className="spl_coin-pile_counter"
+                    count={count}
+                    style={{
+                        top: `${(6-Math.max(count, 1))*8}rem`,
+                    }}
+                />
+                <div>
+                    {stack}
+                </div>
             </div>
         );
     }
