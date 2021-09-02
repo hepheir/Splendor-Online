@@ -33,7 +33,7 @@ class InGame extends React.Component {
                             onyx: { cards: 5, coins: 2 },
                             gold: { coins: 0 },
                         },
-                        reserves: [14],
+                        reserves: [14, 86, 56],
                         tiles: [1, 3, 4, 5, 6],
                     },
                 },
@@ -128,13 +128,13 @@ class InGame extends React.Component {
         };
         this.countCoinsInHand = this.countCoinsInHand.bind(this);
 
-        this.renderPlayerBoards = this.renderPlayerBoards.bind(this);
-
         this.renderCardSupplier = this.renderCardSupplier.bind(this);
         this.renderCoinSupplier = this.renderCoinSupplier.bind(this);
-        this.renderTileSupplier = this.renderTileSupplier.bind(this);
         this.renderHandCounts = this.renderHandCounts.bind(this);
+        this.renderHandReservedCards = this.renderHandReservedCards.bind(this);
         this.renderLogs = this.renderLogs.bind(this);
+        this.renderPlayerBoards = this.renderPlayerBoards.bind(this);
+        this.renderTileSupplier = this.renderTileSupplier.bind(this);
     }
 
     countCoinsInHand() {
@@ -258,7 +258,26 @@ class InGame extends React.Component {
     }
 
     renderHandReservedCards() {
-        return <div className="my-reserved-cards"></div>;
+        const { playerId, players } = this.state;
+        const { hand } = players.find((player) => player.id === playerId);
+        const { reserves } = hand;
+        const f_cards = (card_id) => {
+            const _UNIQUE_KEY = `spl_hand_reserved-card.${card_id}`;
+            return (
+                <div className="spl_hand_reserved-card-container" key={_UNIQUE_KEY}>
+                    <SplendorCardDevelopmentCard
+                        className="spl_hand_reserved-card"
+                        card_id={card_id}
+                    />
+                </div>
+            );
+        };
+        return <div className="spl_hand_reserved-cards">
+                <div className="spl_hand_reserved-cards_desc">
+                    내가 보관한 카드 ({reserves.length}/3)
+                </div>
+                {reserves.map(f_cards)}
+        </div>;
     }
 
     renderPlayerBoards() {
@@ -378,7 +397,7 @@ class InGame extends React.Component {
                         {/* My Hand */}
                         <div className="spl_hand">
                             {this.renderHandCounts()}
-                            <div className="my-reserved-cards"></div>
+                            {this.renderHandReservedCards()}
                             <div className="my-noble-tiles"></div>
                         </div>
                     </div>
