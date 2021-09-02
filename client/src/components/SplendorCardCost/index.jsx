@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import React from "react";
 
-import "./style.css";
-
 import SplendorNumber from "../SplendorNumber";
-import SplendorMiniGem from "../SplendorMiniGem";
+import SplendorGemMiniGem from "../SplendorGemMiniGem";
+
+import "./style.css";
 
 class SplendorCardCost extends React.Component {
     render() {
@@ -17,7 +17,7 @@ class SplendorCardCost extends React.Component {
                 className={classNames("spl_card-cost", this.props.className)}
                 data-gem-type={gem_type}
             >
-                <SplendorMiniGem gem_type={gem_type}></SplendorMiniGem>
+                <SplendorGemMiniGem gem_type={gem_type}></SplendorGemMiniGem>
                 <SplendorNumber>{cost}</SplendorNumber>
             </div>
         );

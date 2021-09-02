@@ -1,7 +1,5 @@
 .spl_coin-pile {
-    width: 70rem;
-    height: 122rem;
-    position: relative;
+    position: absolute;
 }
 
 .spl_coin-pile_coin:last-child {
@@ -10,6 +8,11 @@
 
 .spl_coin-pile_coin:last-child:hover::after {
     box-shadow: 0 0 4rem 4rem rgba(63, 169, 255, 0.898);
+}
+
+.spl_coin-pile_coin.spl_depleted {
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 /* 쌓인 높이에 따라 */

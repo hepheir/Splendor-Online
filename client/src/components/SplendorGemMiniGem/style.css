@@ -2,10 +2,10 @@
     background-size: 500% 100%;
     background-image: url("../../asset/oleum-small.png");
     background-position-y: -200%;
-    width: 16rem;
-    height: 14.266rem;
-    right: -8rem;
-    top: 17.5rem;
+    width: 16em;
+    height: 14.266em;
+    right: -8em;
+    top: 17.5em;
     position: absolute;
     z-index: 1;
 }

@@ -1,0 +1,451 @@
+:root {
+    --side-bar--width: 280rem;
+    --hand-height: 200rem;
+    font-size: 1px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    background-color: black;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-image: url("../../asset/bg.jpg");
+    background-size: cover;
+
+    /* Temporarily Added */
+    color: white;
+}
+
+aside.side-bar {
+    width: var(--side-bar--width);
+    height: 100%;
+
+    display: block;
+
+    position: absolute;
+    top: 0;
+
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.side-bar.left {
+    left: 0;
+}
+
+.side-bar.right {
+    right: 0;
+}
+
+main.main-board {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    padding-left: var(--side-bar--width);
+    padding-right: var(--side-bar--width);
+}
+
+/* Commons */
+
+.main-board * {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Player Boards */
+.spl_player-boards {
+    width: 100%;
+    height: 100%;
+    padding: 8rem;
+}
+
+.spl_player-board {
+    width: 100%;
+    padding: 12rem;
+    margin-top: 16rem;
+    border: 1px solid gray;
+    border-radius: 8rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-areas:
+        "name name score"
+        "src src src"
+        "src src src"
+        "card card tile";
+    grid-template-rows: 1fr 2fr 2fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.spl_player-board_pname {
+    grid-area: name;
+    font-size: 14rem;
+}
+
+.spl_player-board_score {
+    grid-area: score;
+    text-align: right;
+}
+
+.spl_player-board_resources {
+    grid-area: src;
+    margin-top: 12rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.spl_player-board_resource {
+    width: 32rem;
+    height: 80rem;
+    position: relative;
+}
+
+.spl_player-board_card-count {
+    width: 32rem;
+    height: 40rem;
+}
+
+.spl_player-board_coin-count {
+    width: 32rem;
+    height: 40rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.spl_player-board_reserved-cards {
+    grid-area: card;
+    width: 100%;
+    height: 40rem;
+    margin-top: 8rem;
+    position: relative;
+}
+
+.spl_player-board_reserved-card {
+    width: 32rem;
+    height: 40rem;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    font-size: 0.2666rem;
+    background-image: url(../../asset/cards_lowres.jpg);
+    overflow: hidden;
+    /* DEBUG */
+}
+
+.spl_player-board_reserved-card:nth-child(2) {
+    left: 32rem;
+}
+
+.spl_player-board_reserved-card:nth-child(3) {
+    left: 64rem;
+}
+
+.spl_player-board_reserved-card:nth-child(4) {
+    left: 96rem;
+}
+
+.spl_player-board_tiles {
+    grid-area: tile;
+    width: 100%;
+    height: 40rem;
+    margin-top: 8rem;
+    position: relative;
+}
+
+.spl_player-board_tile {
+    width: 32rem;
+    height: 32rem;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    font-size: 0.2666rem;
+    background-image: url(../../asset/nobles_lowres.jpg);
+    overflow: hidden;
+    /* DEBUG */
+}
+
+.spl_player-board_tile:nth-last-child(2) {
+    right: 28rem;
+}
+
+.spl_player-board_tile:nth-last-child(3) {
+    right: 56rem;
+}
+
+.spl_player-board_tile:nth-last-child(4) {
+    right: 84rem;
+}
+
+.spl_player-board_tile:nth-last-child(5) {
+    right: 112rem;
+}
+
+/* Splendor Table */
+
+.spl_table {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/* Card Suppliers */
+.spl_card-suppliers {
+    height: 600rem;
+}
+
+.spl_card-supplier {
+    display: flex;
+}
+
+.spl_card-supplier_card-container {
+    width: 140rem;
+    height: 180rem;
+    flex-shrink: 0;
+}
+
+.spl_card-supplier_card-counter {
+    top: -8rem;
+    left: -8rem;
+}
+
+.spl_card-supplier_card-container:hover {
+    box-shadow: 0 0 4rem 4rem rgba(63, 169, 255, 0.898);
+}
+
+/* Coin Supplier */
+
+.spl_coin-supplier {
+    width: 90rem;
+    order: 2;
+    position: relative;
+    height: 600rem;
+}
+
+.spl_coin-supplier.horizontal {
+    width: 100%;
+    order: -1;
+    height: 110rem;
+}
+
+.spl_coin-supplier_coin-pile {
+    position: absolute;
+}
+
+.spl_coin-supplier_coin-pile[data-gem-type="diamond"] {
+    top: 0%;
+}
+
+.spl_coin-supplier_coin-pile[data-gem-type="sapphire"] {
+    top: 16%;
+}
+
+.spl_coin-supplier_coin-pile[data-gem-type="emerald"] {
+    top: 32%;
+}
+
+.spl_coin-supplier_coin-pile[data-gem-type="ruby"] {
+    top: 48%;
+}
+
+.spl_coin-supplier_coin-pile[data-gem-type="onyx"] {
+    top: 64%;
+}
+
+.spl_coin-supplier_coin-pile[data-gem-type="gold"] {
+    top: 80%;
+}
+
+/* Tils Supplier */
+
+.spl_tile-supplier {
+    display: flex;
+    width: 150rem;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    order: 3;
+    height: 600rem;
+}
+
+.spl_tile-supplier.horizontal {
+    flex-direction: row;
+    width: 100%;
+    order: -2;
+    justify-content: center;
+    height: 150rem;
+}
+
+/* Hand */
+
+.spl_hand {
+    width: 100%;
+    order: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.spl_hand_gems {
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    background-color: hsla(0, 0%, 39.2%, 0.6);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10rem;
+    position: relative;
+    padding: 18rem 15rem 6rem 0;
+    border: 2rem solid gold;
+    border-radius: 18rem;
+    box-shadow: -4rem 4rem 12rem #000;
+}
+
+.spl_hand_gems_desc {
+    background-color: #3c3c3c;
+    position: absolute;
+    top: -28rem;
+    padding: 6rem;
+    border: 2rem solid gold;
+    border-radius: 12rem;
+    box-shadow: -4rem 4rem 12rem #000;
+    font-size: 14rem;
+}
+
+/* Hand Counts */
+
+.spl_hand_counts {
+    display: flex;
+    margin-left: 15rem;
+    position: relative;
+    border-radius: 10rem;
+    padding: 4rem;
+    border: 1rem solid white;
+}
+
+.spl_hand_counts[data-gem-type="onyx"] {
+    background: #000;
+}
+
+.spl_hand_counts[data-gem-type="diamond"] {
+    background: #fff;
+}
+
+.spl_hand_counts[data-gem-type="sapphire"] {
+    background: #0a00bb;
+}
+
+.spl_hand_counts[data-gem-type="emerald"] {
+    background: #091;
+}
+
+.spl_hand_counts[data-gem-type="ruby"] {
+    background: #8b0202;
+}
+
+.spl_hand_counts_mini-gem {
+    right: revert;
+    top: -12rem;
+    left: 30rem;
+    width: 25rem;
+    height: 20rem;
+    z-index: 5;
+}
+
+.spl_hand_counts_card-count,
+.spl_hand_counts_coin-count {
+    height: 40rem;
+    margin: 2rem;
+    display: inline-block;
+}
+
+.spl_hand_reserved-cards {
+    width: 560rem;
+    height: 200rem;
+    min-height: 190rem;
+    margin-top: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    background-color: rgba(100, 100, 100, 0.6);
+    box-shadow: rgb(0, 0, 0) -4rem 4rem 12rem;
+    border: 2rem solid gold;
+    border-image: initial;
+    border-radius: 18rem;
+}
+
+.spl_hand_reserved-cards_desc {
+    background-color: #3c3c3c;
+    position: absolute;
+    top: -28rem;
+    padding: 6rem;
+    border: 2rem solid gold;
+    border-radius: 12rem;
+    box-shadow: -4rem 4rem 12rem #000;
+    font-size: 14rem;
+}
+
+.spl_hand_reserved-card-container:hover .spl_hand_reserved-card {
+    font-size: 1.5rem;
+    z-index: 10;
+    transform: translateY(-75%);
+}
+
+/* Game Log */
+
+.spl_logs {
+    margin: 0;
+    padding: 16rem;
+    list-style: none;
+}
+
+.spl_log {
+    width: 100%;
+    margin-top: 8rem;
+    padding-left: 16rem;
+    padding-right: 32rem;
+    position: relative;
+    font-size: 14rem;
+}
+
+.spl_log[data-indent="1"] {
+    padding-left: 32rem;
+}
+
+.spl_log[data-indent="2"] {
+    padding-left: 48rem;
+}
+
+.spl_log[data-indent="3"] {
+    padding-left: 80rem;
+}
+
+.spl_log[data-indent="4"] {
+    padding-left: 112rem;
+}

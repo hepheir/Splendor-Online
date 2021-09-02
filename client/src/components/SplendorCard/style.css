@@ -1,9 +1,9 @@
 .spl_card {
-    width: 120rem;
-    height: 160rem;
-    border: 2rem solid #fff;
+    width: 120em;
+    height: 160em;
+    border: 2em solid #fff;
     display: grid;
-    margin: 15rem;
+    margin: 10em;
     grid-template-areas:
         "top top top"
         ". . . "
@@ -14,20 +14,21 @@
     grid-template-columns: 1fr 1fr 1fr;
     background-size: 500% 600%;
     background-image: url("../../asset/cards.jpg");
-    box-shadow: -4rem 4rem 12rem #000;
-    border-radius: 8rem;
+    box-shadow: -4em 4em 12em #000;
+    border-radius: 8em;
     position: relative;
     flex-shrink: 0;
+    font-size: 1rem;
 }
 
 /* Card backgrounds */
-.spl_card[data-card-illustration="drawpile.lv1"] {
+.spl_card[data-card-illustration="hidden.lv1"] {
     background-position: 0 -500%;
 }
-.spl_card[data-card-illustration="drawpile.lv2"] {
+.spl_card[data-card-illustration="hidden.lv2"] {
     background-position: -100% -500%;
 }
-.spl_card[data-card-illustration="drawpile.lv3"] {
+.spl_card[data-card-illustration="hidden.lv3"] {
     background-position: -200% -500%;
 }
 

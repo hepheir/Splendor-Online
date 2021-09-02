@@ -1,18 +1,20 @@
 import React from "react";
 
-import "./style.css";
-
 import SplendorCard from "../SplendorCard";
+
+import "./style.css";
 
 class SplendorCardDrawPile extends React.Component {
     render() {
-        const { level } = this.props;
-        const illustration_id = `drawpile.lv${level}`;
+        const { level, children, className } = this.props;
+        const _ILLUSTRATION = `hidden.lv${level}`;
         return (
             <SplendorCard
-                className={this.props.className}
-                illustration={illustration_id}
-            />
+                className={className}
+                illustration={_ILLUSTRATION}
+            >
+                {children}
+            </SplendorCard>
         );
     }
 }
