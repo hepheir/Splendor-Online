@@ -50,7 +50,7 @@ class InGame extends React.Component {
                             onyx: { cards: 1, coins: 1 },
                             gold: { coins: 3 },
                         },
-                        reserves: [1,3],
+                        reserves: [1, 3],
                         tiles: [2],
                     },
                 },
@@ -71,6 +71,60 @@ class InGame extends React.Component {
                     gold: 5,
                 },
             },
+            logs: [
+                {
+                    message: '[Turn 1] Start Hepheir\'s Turn',
+                    indent: 0,
+                },
+                {
+                    message: 'Hepheir buys a card(lv1)',
+                    indent: 1,
+                },
+                {
+                    message: 'returns 1 ruby',
+                    indent: 2,
+                },
+                {
+                    message: 'returns 5 onyx',
+                    indent: 2,
+                },
+                {
+                    message: '[Turn 1] Start SJH\'s Turn',
+                    indent: 0,
+                },
+                {
+                    message: 'SJH reserves a card(lv2)',
+                    indent: 1,
+                },
+                {
+                    message: 'gains a gold',
+                    indent: 2,
+                },
+                {
+                    message: '[Turn 1] Start koreair\'s Turn',
+                    indent: 0,
+                },
+                {
+                    message: 'koreair takes 1 ruby',
+                    indent: 1,
+                },
+                {
+                    message: 'koreair takes 1 emerald',
+                    indent: 1,
+                },
+                {
+                    message: 'koreair takes 1 sapphire',
+                    indent: 1,
+                },
+                {
+                    message: '[Turn 1] Start isuke\'s Turn',
+                    indent: 0,
+                },
+                {
+                    message: 'isuke takes 2 ruby',
+                    indent: 1,
+                },
+            ],
         };
         this.countCoinsInHand = this.countCoinsInHand.bind(this);
 
@@ -79,7 +133,8 @@ class InGame extends React.Component {
         this.renderCardSupplier = this.renderCardSupplier.bind(this);
         this.renderCoinSupplier = this.renderCoinSupplier.bind(this);
         this.renderTileSupplier = this.renderTileSupplier.bind(this);
-        this.renderHandGems = this.renderHandCounts.bind(this);
+        this.renderHandCounts = this.renderHandCounts.bind(this);
+        this.renderLogs = this.renderLogs.bind(this);
     }
 
     countCoinsInHand() {
@@ -286,6 +341,28 @@ class InGame extends React.Component {
         );
     }
 
+    renderLogs() {
+        const { logs } = this.state;
+        const f_log = (log, index) => {
+            const _UNIQUE_KEY = `spl_log.${index}`;
+            const { message, indent } = log;
+            return (
+                <li
+                    className="spl_log"
+                    data-indent={indent}
+                    key={_UNIQUE_KEY}
+                >
+                    {message}
+                </li>
+            );
+        }
+        return (
+            <ul className="spl_logs">
+                {logs.map(f_log)}
+            </ul>
+        );
+    }
+
     render() {
         return (
             <>
@@ -307,7 +384,7 @@ class InGame extends React.Component {
                     </div>
                 </main>
                 <aside id="logs" className="side-bar right">
-                    {/* <Logs /> */}
+                    {this.renderLogs()}
                 </aside>
             </>
         );

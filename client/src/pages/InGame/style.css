@@ -140,14 +140,18 @@ main.main-board {
     left: 0;
     font-size: 0.2666rem;
     background-image: url(../../asset/cards_lowres.jpg);
-    overflow: hidden; /* DEBUG */
+    overflow: hidden;
+    /* DEBUG */
 }
+
 .spl_player-board_reserved-card:nth-child(2) {
     left: 32rem;
 }
+
 .spl_player-board_reserved-card:nth-child(3) {
     left: 64rem;
 }
+
 .spl_player-board_reserved-card:nth-child(4) {
     left: 96rem;
 }
@@ -168,17 +172,22 @@ main.main-board {
     right: 0;
     font-size: 0.2666rem;
     background-image: url(../../asset/nobles_lowres.jpg);
-    overflow: hidden; /* DEBUG */
+    overflow: hidden;
+    /* DEBUG */
 }
+
 .spl_player-board_tile:nth-last-child(2) {
     right: 28rem;
 }
+
 .spl_player-board_tile:nth-last-child(3) {
     right: 56rem;
 }
+
 .spl_player-board_tile:nth-last-child(4) {
     right: 84rem;
 }
+
 .spl_player-board_tile:nth-last-child(5) {
     right: 112rem;
 }
@@ -229,21 +238,27 @@ main.main-board {
 .spl_coin-supplier_coin-pile {
     position: absolute;
 }
+
 .spl_coin-supplier_coin-pile[data-gem-type="diamond"] {
     top: 0%;
 }
+
 .spl_coin-supplier_coin-pile[data-gem-type="sapphire"] {
     top: 16%;
 }
+
 .spl_coin-supplier_coin-pile[data-gem-type="emerald"] {
     top: 32%;
 }
+
 .spl_coin-supplier_coin-pile[data-gem-type="ruby"] {
     top: 48%;
 }
+
 .spl_coin-supplier_coin-pile[data-gem-type="onyx"] {
     top: 64%;
 }
+
 .spl_coin-supplier_coin-pile[data-gem-type="gold"] {
     top: 80%;
 }
@@ -354,4 +369,35 @@ main.main-board {
     -moz-user-select: none;
     -khtml-user-select: none;
     -ms-user-select: none;
+}
+
+.spl_logs {
+    margin: 0;
+    padding: 16rem;
+    list-style: none;
+}
+
+.spl_log {
+    width: 100%;
+    margin-top: 8rem;
+    padding-left: 16rem;
+    padding-right: 32rem;
+    position: relative;
+    font-size: 14rem;
+}
+
+.spl_log[data-indent="1"] {
+    padding-left: 32rem;
+}
+
+.spl_log[data-indent="2"] {
+    padding-left: 48rem;
+}
+
+.spl_log[data-indent="3"] {
+    padding-left: 80rem;
+}
+
+.spl_log[data-indent="4"] {
+    padding-left: 112rem;
 }
