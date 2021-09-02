@@ -45,11 +45,11 @@ class InGame extends React.Component {
                     hand: {
                         resources: {
                             diamond: { cards: 3, coins: 0 },
-                            sapphire: { cards: 1, coins: 1 },
+                            sapphire: { cards: 1, coins: 2 },
                             emerald: { cards: 0, coins: 0 },
-                            ruby: { cards: 0, coins: 1 },
+                            ruby: { cards: 0, coins: 4 },
                             onyx: { cards: 1, coins: 1 },
-                            gold: { coins: 3 },
+                            gold: { coins: 2 },
                         },
                         reserves: [1, 3],
                         tiles: [2],
@@ -77,11 +77,11 @@ class InGame extends React.Component {
                 ],
                 coins: {
                     diamond: 4,
-                    sapphire: 1,
+                    sapphire: 0,
                     emerald: 5,
-                    ruby: 4,
+                    ruby: 1,
                     onyx: 2,
-                    gold: 2,
+                    gold: 3,
                 },
             },
             logs: [
