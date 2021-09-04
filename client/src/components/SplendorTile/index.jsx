@@ -16,10 +16,10 @@ class SplendorTile extends React.Component {
             error: null,
             isLoaded: false,
             tile: {
-                id: null,
-                illustration: null,
-                prestige_point: null,
-                cost: {
+                tile_id: null,
+                tile_illustration: null,
+                tile_score: null,
+                tile_cost: {
                     diamond: null,
                     emerald: null,
                     onyx: null,
@@ -72,12 +72,12 @@ class SplendorTile extends React.Component {
             return (
                 <div
                     className={classNames("spl_noble-tile", className)}
-                    data-illustration={tile.illustration}
+                    data-illustration={tile.tile_illustration}
                 >
                     <div className="spl_noble-tile_costs">
-                        {Object.keys(tile.cost).map((gem_type) => {
+                        {Object.keys(tile.tile_cost).map((gem_type) => {
                             const unique_key = `tile_${tile.card_id}_${gem_type}`;
-                            const cost = tile.cost[gem_type];
+                            const cost = tile.tile_cost[gem_type];
 
                             if (!cost) return null;
 
@@ -91,7 +91,7 @@ class SplendorTile extends React.Component {
                         })}
                     </div>
                     <SplendorNumber className="spl_noble-tile_prestige-point">
-                        {tile.prestige_point}
+                        {tile.tile_score}
                     </SplendorNumber>
                 </div>
             );

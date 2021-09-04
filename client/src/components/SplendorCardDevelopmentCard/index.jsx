@@ -18,12 +18,12 @@ class SplendorCardDevelopmentCard extends React.Component {
             error: null,
             isLoaded: false,
             card: {
-                id: null,
-                level: null,
-                gem_bonus: null,
-                illustration: null,
-                prestige_point: null,
-                cost: {
+                card_id: null,
+                card_level: null,
+                card_bonus: null,
+                card_illustration: null,
+                card_score: null,
+                card_cost: {
                     diamond: null,
                     sapphire: null,
                     emerald: null,
@@ -72,21 +72,21 @@ class SplendorCardDevelopmentCard extends React.Component {
         else {
             return (
                 <SplendorCard
-                    id={card.id}
+                    id={card.card_id}
                     className={classNames(className)}
-                    illustration={card.illustration}
+                    illustration={card.card_illustration}
                 >
                     <div className="spl_dev-card_header">
-                        <SplendorNumber>{card.prestige_point}</SplendorNumber>
+                        <SplendorNumber>{card.card_score}</SplendorNumber>
                         <SplendorGem
                             className="spl_dev-card_header_gem"
-                            gem_type={card.gem_bonus}
+                            gem_type={card.card_bonus}
                         />
                     </div>
                     <div className="spl_card-costs">
-                        {Object.keys(card.cost).map((gem_type) => {
+                        {Object.keys(card.card_cost).map((gem_type) => {
                             const unique_key = `card_${card.card_id}_${gem_type}`;
-                            const cost = card.cost[gem_type];
+                            const cost = card.card_cost[gem_type];
 
                             if (!cost) return null;
 

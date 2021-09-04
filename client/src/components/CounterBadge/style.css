@@ -1,16 +1,18 @@
 .spl_counter-badge {
     width: 24rem;
     height: 24rem;
-    padding: 4rem 0;;
+    padding: 2rem 0;
     position: absolute;
     top: 4rem;
     left: 4rem;
     background-color: crimson;
     border: 2rem solid black;
     border-radius: 8rem;
-    font-size: 14rem;
-    text-align: center;
-    font-weight: bold;
     color: white;
+    font-size: 14rem;
+    font-weight: bold;
+    line-height: 16rem;
+    text-align: center;
+    vertical-align: middle;
     z-index: 9;
 }
