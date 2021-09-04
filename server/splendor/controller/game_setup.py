@@ -1,6 +1,6 @@
 from random import shuffle
 
-from splendor.controller.game_util import cast_card, cast_tile
+from splendor.controller.game_util import cast_card, cast_tile, log
 from splendor.database.user import User
 from splendor.database.splendor_card import get_all_cards_by_level
 from splendor.database.splendor_tile import get_random_tiles
@@ -9,20 +9,23 @@ from splendor.model.components import COIN_TYPE, GAME_STATUS, CardSupplier, Coin
 
 def create_new_game(game_id: str) -> Game:
     # TODO: Implement unique id per game
-    return Game(game_id)
+    game = Game(game_id)
+    log(game, '')
+    log(game, '[new game]')
+    return game
 
 
 def add_player(game: Game, user: User) -> None:
     if game.game_status != GAME_STATUS.PRE_GAME:
-        print('Players only can join before the game starts.')
+        log(game, 'Players only can join before the game starts.')
         return
 
     for player in game.game_players:
         if player.user.user_id is user.user_id:
-            print(f'{user.user_name} has already joined the game #{game.game_id}.')
+            log(game, f'{user.user_name} has already joined the game.')
             return
 
-    print(f'{user.user_name} joined the game #{game.game_id}.')
+    log(game, f'{user.user_name} joined the game.')
     new_player = Player(user)
     game.game_players.append(new_player)
 
