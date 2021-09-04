@@ -9,7 +9,7 @@ from splendor.model.components import CardSupplier, Game, Player
 
 @pytest.fixture
 def my_game() -> Game:
-    return create_new_game("0001")
+    return create_new_game("test.controller_game_setup")
 
 
 @pytest.fixture
@@ -18,7 +18,7 @@ def my_users() -> List[User]:
 
 
 def test_game_id(my_game: Game):
-    assert my_game.game_id == "0001"
+    assert my_game.game_id == "test.controller_game_setup"
 
 
 def test_add_players(my_game: Game, my_users: List[User]):
