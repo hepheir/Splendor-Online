@@ -1,6 +1,21 @@
+from io import TextIOWrapper
+from os import path
+from typing import Any, Dict
+
 from splendor.database.splendor_card import SplendorCard
 from splendor.database.splendor_tile import SplendorTile
 from splendor.model.components import Card, Cost, Tile, Game, Player
+
+
+_RUNNING_GAMES: Dict[Any, TextIOWrapper] = {}
+
+
+def log(game: Game, *args, sep=' ', end='\n') -> None:
+    if game.game_id not in _RUNNING_GAMES:
+        file_name = path.join('splendor', 'log', f'{game.game_id}.log')
+        _RUNNING_GAMES[game.game_id] = open(file_name, 'w')
+
+    _RUNNING_GAMES[game.game_id].write(sep.join(map(str, args))+end)
 
 
 def round(game: Game) -> int:
