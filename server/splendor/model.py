@@ -204,3 +204,17 @@ class Game:
             self.setup_game()
             print(f'[SYSTEM] Start the game {self}.')
             print()
+            self.begin_round()
+
+    def begin_round(self):
+        print(f'[SYSTEM] Preparing for begining the round...')
+        if self.game_state not in [GAME_STATE.START_GAME, GAME_STATE.END_ROUND]:
+            print(f'[ERROR] Unable to begin the round.')
+            print(f'[ERROR] You are accessing from wrong state'
+                  f' <game_state:{self.game_state}>.')
+            print()
+            return
+        self.game_state = GAME_STATE.BEGIN_ROUND
+        _round_no = self.game_turn // self.n_players + 1
+        print(f'[SYSTEM] Beginning the round <round_no:{_round_no}>')
+        print()
