@@ -11,6 +11,8 @@ import SplendorTile from "../../components/SplendorTile";
 
 import "./style.css";
 
+import { socket } from "../../api";
+
 const GEM_TYPES = ["diamond", "sapphire", "emerald", "ruby", "onyx", "gold"];
 
 class InGame extends React.Component {
@@ -60,6 +62,7 @@ class InGame extends React.Component {
                 tiles: [1, 3, 5, 7, 9],
                 card_rows: [
                     {
+                        1: null,
                         level: 3,
                         drawables: 16,
                         revealeds: [72, 89, 76, 82],
@@ -139,6 +142,9 @@ class InGame extends React.Component {
                 },
             ],
         };
+
+        this.updateTable = this.updateTable.bind(this);
+
         this.countCoinsInHand = this.countCoinsInHand.bind(this);
 
         this.renderCardSupplier = this.renderCardSupplier.bind(this);
@@ -148,6 +154,12 @@ class InGame extends React.Component {
         this.renderLogs = this.renderLogs.bind(this);
         this.renderPlayerBoards = this.renderPlayerBoards.bind(this);
         this.renderTileSupplier = this.renderTileSupplier.bind(this);
+
+        socket.on('update.table', this.updateTable);
+    }
+
+    updateTable(data) {
+        this.setState({table: data});
     }
 
     countCoinsInHand() {
