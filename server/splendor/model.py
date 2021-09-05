@@ -222,3 +222,19 @@ class Game:
         _round_no = self.game_turn // self.n_players + 1
         print(f'[SYSTEM] Beginning the round #{_round_no}.')
         print()
+        self.begin_turn()
+
+    def begin_turn(self):
+        print(f'[SYSTEM] Preparing for begining the turn...')
+        if self.game_state not in [GAME_STATE.BEGIN_ROUND, GAME_STATE.END_TURN]:
+            print(f'[ERROR] Unable to begin the round.')
+            print(f'[ERROR] You are accessing from wrong state'
+                  f' <game_state:{self.game_state}>.')
+            print()
+            return
+        self.game_state = GAME_STATE.BEGIN_TURN
+        self.game_turn += 1
+        _user_db_row = self.current_player_db_row
+        print(f'[SYSTEM] Beginning the turn #{self.game_turn}.')
+        print(f"[SYSTEM] {_user_db_row['user_name']}'s Turn")
+        print()
