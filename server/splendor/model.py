@@ -238,3 +238,32 @@ class Game:
         print(f'[SYSTEM] Beginning the turn #{self.game_turn}.')
         print(f"[SYSTEM] {_user_db_row['user_name']}'s Turn")
         print()
+
+    def action(self, user: User, action_type: str, **data):
+        print(f'[SYSTEM] {user} want to do <action_type:{action_type}>.')
+        if self.game_state != GAME_STATE.BEGIN_TURN:
+            print(f'[ERROR] Unable to do the action.')
+            print(f'[ERROR] You are accessing from wrong state'
+                  f' <game_state:{self.game_state}>.')
+            print()
+            return
+        elif user.db_row['user_id'] != self.current_player_db_row['user_id']:
+            print(f'[ERROR] Unable to do the action.')
+            print(f"[ERROR] This is not {user}'s turn.")
+            print()
+            return
+        if action_type == 'gain_coin':
+            # TODO
+            raise NotImplementedError()
+        elif action_type == 'buy_card':
+            # TODO
+            raise NotImplementedError()
+        elif action_type == 'reserve_card':
+            # TODO
+            raise NotImplementedError()
+        else:
+            print(f'[ERROR] Unable to do the action.')
+            print(f"[ERROR] <action_type:{action_type}> is not a valid"
+                  f" type of action.")
+            print()
+            return
