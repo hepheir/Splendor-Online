@@ -19,11 +19,15 @@ def log(game: Game, *args, sep=' ', end='\n') -> None:
 
 
 def round(game: Game) -> int:
-    return game.game_turn_number // len(game.game_players) + 1
+    return game.game_turn_number // len(game.game_players)
 
 
 def current_player(game: Game) -> Player:
     return game.game_players[game.game_turn_number % len(game.game_players)]
+
+
+def current_player_name(game: Game) -> str:
+    return current_player(game).user.user_name
 
 
 def cast_card(db_card: SplendorCard) -> Card:

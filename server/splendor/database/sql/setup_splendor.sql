@@ -1,6 +1,59 @@
-DROP TABLE IF EXISTS SplendorCard;
-CREATE TABLE SplendorCard (
-    card_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+DROP TABLE IF EXISTS card; -- DEBUG
+DROP TABLE IF EXISTS coin; -- DEBUG
+DROP TABLE IF EXISTS tile; -- DEBUG
+
+
+CREATE TABLE IF NOT EXISTS tile (
+    tile_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tile_score INTEGER,
+    tile_illustration TEXT,
+    tile_cost_diamond INTEGER,
+    tile_cost_sapphire INTEGER,
+    tile_cost_emerald INTEGER,
+    tile_cost_ruby INTEGER,
+    tile_cost_onyx INTEGER
+);
+
+INSERT OR IGNORE INTO tile (
+    tile_score,
+    tile_illustration,
+    tile_cost_diamond,
+    tile_cost_sapphire,
+    tile_cost_emerald,
+    tile_cost_ruby,
+    tile_cost_onyx
+)
+VALUES
+    (3, 'noble.mary_stuart', 0, 0, 4, 4, 0),
+    (3, 'noble.soliman_the_magniflcent', 0, 4, 4, 0, 0),
+    (3, 'noble.noble_macchiavelli', 4, 4, 0, 0, 0),
+    (3, 'noble.isabel_of_castille', 4, 0, 0, 0, 4),
+    (3, 'noble.henri_viii', 0, 0, 0, 4, 4),
+    (3, 'noble.elisabeth_of_austria', 3, 3, 0, 0, 3),
+    (3, 'noble.francis_i_of_france', 0, 0, 3, 3, 3),
+    (3, 'noble.charles_quint', 3, 0, 0, 3, 3),
+    (3, 'noble.catherine_of_medicis', 0, 3, 3, 3, 0),
+    (3, 'noble.anne_of_brittany', 3, 3, 3, 0, 0);
+
+
+
+CREATE TABLE IF NOT EXISTS coin (
+    coin_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    coin_type INTEGER
+);
+
+INSERT OR IGNORE INTO coin (coin_type)
+VALUES
+    (0), (0), (0), (0), (0),
+    (1), (1), (1), (1), (1), (1), (1),
+    (2), (2), (2), (2), (2), (2), (2),
+    (3), (3), (3), (3), (3), (3), (3),
+    (4), (4), (4), (4), (4), (4), (4),
+    (5), (5), (5), (5), (5), (5), (5);
+
+
+CREATE TABLE IF NOT EXISTS card (
+    card_id INTEGER PRIMARY KEY AUTOINCREMENT,
     card_level INTEGER,
     card_score INTEGER,
     card_bonus TEXT,
@@ -11,11 +64,9 @@ CREATE TABLE SplendorCard (
     card_cost_ruby INTEGER,
     card_cost_onyx INTEGER
 );
-INSERT INTO SplendorCard (card_level, card_score, card_bonus, card_illustration, card_cost_diamond, card_cost_sapphire, card_cost_emerald, card_cost_ruby, card_cost_onyx)
+
+INSERT OR IGNORE INTO card (card_level, card_score, card_bonus, card_illustration, card_cost_diamond, card_cost_sapphire, card_cost_emerald, card_cost_ruby, card_cost_onyx)
 VALUES
-    (0, NULL, NULL, 'hidden.lv1', NULL, NULL, NULL, NULL, NULL),
-    (0, NULL, NULL, 'hidden.lv2', NULL, NULL, NULL, NULL, NULL),
-    (0, NULL, NULL, 'hidden.lv3', NULL, NULL, NULL, NULL, NULL),
     (1, 1, 'onyx', 'onyx.mine', 0, 4, 0, 0, 0),
     (1, 0, 'onyx', 'onyx.mine', 0, 0, 1, 3, 1),
     (1, 0, 'onyx', 'onyx.mine', 1, 1, 1, 1, 0),

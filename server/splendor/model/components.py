@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from enum import IntEnum
+from enum import IntEnum, auto
 from typing import Dict, List
 
 from splendor.database.user import User
@@ -9,6 +9,11 @@ from splendor.database.user import User
 
 _T_ID = int
 _T_CARD_LEVEL = int
+_T_ERROR_CODE = int
+
+
+class ErrorPlay(Exception):
+    pass
 
 
 class COIN_TYPE(IntEnum):
@@ -21,16 +26,25 @@ class COIN_TYPE(IntEnum):
 
 
 class GAME_STATUS(IntEnum):
-    PRE_GAME = 0
-    IN_GAME = 1
-    POST_GAME = 2
+    PRE_GAME = auto()
+
+    START_GAME = auto()
+    END_GAME = auto()
+
+    BEGIN_ROUND = auto()
+    END_ROUND = auto()
+
+    BEGIN_TURN = auto()
+    END_TURN = auto()
+
+    WAITING_FOR_PRE_ACTION = auto()
+    WAITING_FOR_POST_ACTION = auto()
 
 
 @dataclass
 class Coin:
     coin_id: _T_ID
     coin_type: COIN_TYPE
-    coin_container: CoinContainer
 
 
 @dataclass
@@ -78,14 +92,17 @@ class CoinContainer:
     def send(self, dst: CoinContainer, coin_type: COIN_TYPE, amount: int) -> None:
         assert isinstance(dst, CoinContainer)
         if len(self[coin_type]) < amount:
-            print("Not enough coins.")
-            return
+            raise Exception("Not enough coins.")
         for i in range(amount):
             dst[coin_type].append(self[coin_type].pop())
 
-    def get(self, src: CoinContainer, coin_type: COIN_TYPE, amount: int) -> None:
+    def send_all(self, dst: CoinContainer) -> None:
+        for coin_type in COIN_TYPE:
+            self.send(dst, coin_type, len(self[coin_type]))
+
+    def get(self, src: CoinContainer, coin_type: COIN_TYPE, amount: int) -> _T_ERROR_CODE:
         assert isinstance(src, CoinContainer)
-        src.send(self, coin_type, amount)
+        return src.send(self, coin_type, amount)
 
 
 @dataclass
@@ -116,11 +133,6 @@ class Player:
 class Game:
     game_id: _T_ID
     game_players: List[Player] = field(default_factory=list)
-
-    # HASH TABLE
-    game_coins: Dict[_T_ID, Coin] = field(default_factory=dict)
-    game_cards: Dict[_T_ID, Card] = field(default_factory=dict)
-    game_tiles: Dict[_T_ID, Tile] = field(default_factory=dict)
 
     game_table: Table = field(default_factory=Table)
     game_status: GAME_STATUS = field(default=GAME_STATUS.PRE_GAME)

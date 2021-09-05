@@ -1,1 +1,1 @@
-from splendor.app import app
+from splendor.app import app, socketio
