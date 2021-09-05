@@ -127,3 +127,18 @@ class Game:
             return 2
         else:
             return 0
+
+    def join(self, user: User) -> None:
+        assert isinstance(user, User)
+        print(f'[SYSTEM] Player {user} wants to join the game.')
+        if self.game_state != GAME_STATE.PRE_GAME:
+            print(f'[ERROR] Player {user} could not join the game.')
+            print(f'[ERROR] - The game has already been started,'
+                  f' or the game has expired.')
+            print()
+            return
+        database.update_one('user',
+                            query={"user_id": user.db_row["user_id"]},
+                            value={"game_id": self.game_id})
+        print(f'[SYSTEM] Player {user} joined the game.')
+        print()
