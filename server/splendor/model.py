@@ -216,5 +216,5 @@ class Game:
             return
         self.game_state = GAME_STATE.BEGIN_ROUND
         _round_no = self.game_turn // self.n_players + 1
-        print(f'[SYSTEM] Beginning the round <round_no:{_round_no}>')
+        print(f'[SYSTEM] Beginning the round #{_round_no}.')
         print()
