@@ -174,3 +174,21 @@ class Game:
                                        "owner_id": None})
         print(f'[SYSTEM] Finish setting up the {self}.')
         print()
+
+    def start_game(self):
+        print(f'[SYSTEM] Preparing for starting the game {self}...')
+        if self.game_state != GAME_STATE.PRE_GAME:
+            print(f'[ERROR] The game has already been started.')
+            print(f'[ERROR] - State of the game is {self.game_state}.')
+            print()
+            return
+        elif self.n_players < 2:
+            print(f'[ERROR] Not enough players to start the game.')
+            print(f'[ERROR] - There are {self.n_players} player(s).')
+            print()
+            return
+        else:
+            self.game_state = GAME_STATE.START_GAME
+            self.setup_game()
+            print(f'[SYSTEM] Start the game {self}.')
+            print()
