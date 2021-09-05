@@ -142,3 +142,35 @@ class Game:
                             value={"game_id": self.game_id})
         print(f'[SYSTEM] Player {user} joined the game.')
         print()
+
+    def setup_game(self) -> None:
+        print(f'[SYSTEM] Start setting up the {self}.')
+        tiles = database.select_all('tile')[:self.n_players+1]
+        cards = database.select_all('card')
+        coins = database.select_all('coin')
+        shuffle(cards)
+        shuffle(tiles)
+        coins_discarded = defaultdict(lambda: self.coins_to_discard)
+        for tile in tiles:
+            database.insert_one('game_component',
+                                value={"game_id": self.game_id,
+                                       "component_id": tile["tile_id"],
+                                       "component_type": COMPONENT_TYPE.TILE,
+                                       "owner_id": None})
+        for card in cards:
+            database.insert_one('game_component',
+                                value={"game_id": self.game_id,
+                                       "component_id": card["card_id"],
+                                       "component_type": COMPONENT_TYPE.CARD,
+                                       "owner_id": None})
+        for coin in coins:
+            if coins_discarded[coin["coin_type"]] > 0:
+                coins_discarded[coin["coin_type"]] -= 1
+                continue
+            database.insert_one('game_component',
+                                value={"game_id": self.game_id,
+                                       "component_id": coin["coin_id"],
+                                       "component_type": COMPONENT_TYPE.COIN,
+                                       "owner_id": None})
+        print(f'[SYSTEM] Finish setting up the {self}.')
+        print()
