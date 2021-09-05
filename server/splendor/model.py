@@ -72,7 +72,8 @@ class Game:
         print(f'[SYSTEM] Player {host_user} wants to create a game.')
         self._game_id: int = host_user.db_row["user_id"]
         database.insert_one('game', value={"game_id": self.game_id,
-                                           "game_state": GAME_STATE.PRE_GAME})
+                                           "game_state": GAME_STATE.PRE_GAME,
+                                           "game_turn": 0})
         database.update_one('user',
                             query={"user_id": host_user.db_row["user_id"]},
                             value={"game_id": self.game_id})
@@ -117,6 +118,16 @@ class Game:
     def game_state(self, new_state: GAME_STATE):
         database.update_one('game',
                             value={"game_state": new_state},
+                            query={"game_id": self.game_id})
+
+    @property
+    def game_turn(self):
+        return self.db_row["game_turn"]
+
+    @game_turn.setter
+    def game_turn(self, value: int):
+        database.update_one('game',
+                            value={"game_turn": value},
                             query={"game_id": self.game_id})
 
     @property
@@ -172,6 +183,7 @@ class Game:
                                        "component_id": coin["coin_id"],
                                        "component_type": COMPONENT_TYPE.COIN,
                                        "owner_id": None})
+        self.game_turn = 0
         print(f'[SYSTEM] Finish setting up the {self}.')
         print()
 
