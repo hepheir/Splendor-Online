@@ -1,5 +1,7 @@
 from enum import IntEnum, auto
 
+from splendor import database
+
 
 class COMPONENT_TYPE(IntEnum):
     CARD = auto()
@@ -26,3 +28,23 @@ class GAME_STATE(IntEnum):
     END_TURN = auto()
     WAITING_FOR_PRE_ACTION = auto()
     WAITING_FOR_POST_ACTION = auto()
+
+
+class User:
+    def __init__(self, name: str) -> None:
+        self._user_name = name
+        if self.db_row:
+            print(f"User with name: [{self.user_name}] already exists.")
+            return
+        database.insert_one('user', value={"user_name": self.user_name})
+
+    def __del__(self) -> None:
+        database.delete_all('user', query={"user_name": self.user_name})
+
+    @property
+    def user_name(self) -> str:
+        return self._user_name
+
+    @property
+    def db_row(self):
+        return database.select_one('user', query={"user_name": self.user_name})
