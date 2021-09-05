@@ -4,6 +4,8 @@ from random import shuffle
 
 from splendor import database
 
+from splendor import database
+
 
 class COMPONENT_TYPE(IntEnum):
     CARD = auto()
