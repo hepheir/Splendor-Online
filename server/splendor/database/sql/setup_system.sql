@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS user (
 CREATE TABLE IF NOT EXISTS game (
     game_id INTEGER PRIMARY KEY,
     game_state INTEGER NOT NULL,
+    game_turn INTEGER NOT NULL,
     FOREIGN KEY (game_id) REFERENCES user(user_id)
 );
 
