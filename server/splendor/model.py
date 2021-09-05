@@ -143,3 +143,9 @@ class Game:
                                        "component_id": coin["coin_id"],
                                        "component_type": COMPONENT_TYPE.COIN,
                                        "owner_id": None})
+
+    def start_game(self):
+        assert self.game_state is GAME_STATE.PRE_GAME
+        self.game_state = GAME_STATE.START_GAME
+        print('setting up game')
+        self.setup_game()
