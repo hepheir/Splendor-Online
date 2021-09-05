@@ -131,6 +131,10 @@ class Game:
                             query={"game_id": self.game_id})
 
     @property
+    def current_player_db_row(self):
+        return self.player_db_rows[(self.game_turn-1) % self.n_players]
+
+    @property
     def coins_to_discard(self):
         if self.n_players == 2:
             return 3
