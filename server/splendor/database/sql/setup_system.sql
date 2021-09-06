@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS game_transaction (
     src_id INTEGER DEFAULT NULL,
     dst_id INTEGER DEFAULT NULL,
     FOREIGN KEY (game_id) REFERENCES game(game_id),
-    FOREIGN KEY (src_id, dst_id) REFERENCES user(user_id),
+    FOREIGN KEY (src_id) REFERENCES user(user_id),
+    FOREIGN KEY (dst_id) REFERENCES user(user_id),
     PRIMARY KEY (game_id, component_id, component_type)
 );
