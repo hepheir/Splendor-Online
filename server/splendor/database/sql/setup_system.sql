@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS user; -- DEBUG
 DROP TABLE IF EXISTS game; -- DEBUG
 DROP TABLE IF EXISTS game_component; -- DEBUG
+DROP TABLE IF EXISTS game_transaction; -- DEBUG
 
 
 CREATE TABLE IF NOT EXISTS user (
@@ -26,5 +27,17 @@ CREATE TABLE IF NOT EXISTS game_component (
     owner_id INTEGER DEFAULT NULL,
     FOREIGN KEY (game_id) REFERENCES game(game_id),
     FOREIGN KEY (owner_id) REFERENCES user(user_id),
+    PRIMARY KEY (game_id, component_id, component_type)
+);
+
+
+CREATE TABLE IF NOT EXISTS game_transaction (
+    game_id INTEGER NOT NULL,
+    component_id INTEGER NOT NULL,
+    component_type INTEGER NOT NULL,
+    src_id INTEGER DEFAULT NULL,
+    dst_id INTEGER DEFAULT NULL,
+    FOREIGN KEY (game_id) REFERENCES game(game_id),
+    FOREIGN KEY (src_id, dst_id) REFERENCES user(user_id),
     PRIMARY KEY (game_id, component_id, component_type)
 );
