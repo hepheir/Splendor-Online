@@ -6,6 +6,7 @@ authors = ["Hepheir <hepheir@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+Flask = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.7"
