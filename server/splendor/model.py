@@ -240,7 +240,8 @@ class Game:
         print()
 
     def action(self, user: User, action_type: str, **data):
-        print(f'[SYSTEM] {user} want to do <action_type:{action_type}>.')
+        print(f'[SYSTEM] Preparing for <action_type:{action_type}>...')
+        print(f'[SYSTEM] * Action request from: {user}')
         if self.game_state != GAME_STATE.BEGIN_TURN:
             print(f'[ERROR] Unable to do the action.')
             print(f'[ERROR] You are accessing from wrong state'
