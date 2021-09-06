@@ -51,6 +51,4 @@ def test_2_player_game(create_2_player_game):
         p1, p2 = p2, p1
 
     game.action(p2, 'gain_coin', diamond=1, sapphire=1, ruby=1)
-
-    with pytest.raises(NotImplementedError):
-        game.action(p1, 'gain_coin', diamond=1, sapphire=1, ruby=1)
+    game.action(p1, 'gain_coin', diamond=1, sapphire=1, ruby=1, onyx=1)

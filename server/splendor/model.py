@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import Counter, defaultdict
 from enum import IntEnum, auto
 from random import shuffle
 
@@ -206,12 +206,12 @@ class Game:
         print(f'[SYSTEM] Preparing for starting the game {self}...')
         if self.game_state != GAME_STATE.PRE_GAME:
             print(f'[ERROR] The game has already been started.')
-            print(f'[ERROR] - State of the game is {self.game_state}.')
+            print(f'[ERROR] * State of the game is {self.game_state}.')
             print()
             return
         elif self.n_players < 2:
             print(f'[ERROR] Not enough players to start the game.')
-            print(f'[ERROR] - There are {self.n_players} player(s).')
+            print(f'[ERROR] * There are {self.n_players} player(s).')
             print()
             return
         else:
@@ -225,7 +225,7 @@ class Game:
         print(f'[SYSTEM] Preparing for begining the round...')
         if self.game_state not in [GAME_STATE.START_GAME, GAME_STATE.END_ROUND]:
             print(f'[ERROR] Unable to begin the round.')
-            print(f'[ERROR] You are accessing from wrong state'
+            print(f'[ERROR] * You are accessing from wrong state'
                   f' <game_state:{self.game_state}>.')
             print()
             return
@@ -239,7 +239,7 @@ class Game:
         print(f'[SYSTEM] Preparing for begining the turn...')
         if self.game_state not in [GAME_STATE.BEGIN_ROUND, GAME_STATE.END_TURN]:
             print(f'[ERROR] Unable to begin the round.')
-            print(f'[ERROR] You are accessing from wrong state'
+            print(f'[ERROR] * You are accessing from wrong state'
                   f' <game_state:{self.game_state}>.')
             print()
             return
@@ -252,21 +252,20 @@ class Game:
 
     def action(self, user: User, action_type: str, **data):
         print(f'[SYSTEM] Preparing for <action_type:{action_type}>...')
-        print(f'[SYSTEM] * Action request from: {user}')
+        print(f'[SYSTEM] * Action was requested from: {user}')
         if self.game_state != GAME_STATE.BEGIN_TURN:
             print(f'[ERROR] Unable to do the action.')
-            print(f'[ERROR] You are accessing from wrong state'
+            print(f'[ERROR] * You are accessing from wrong state'
                   f' <game_state:{self.game_state}>.')
             print()
             return
         elif user.db_row['user_id'] != self.current_player_db_row['user_id']:
             print(f'[ERROR] Unable to do the action.')
-            print(f"[ERROR] This is not {user}'s turn.")
+            print(f"[ERROR] * This is not {user}'s turn.")
             print()
             return
         if action_type == 'gain_coin':
-            # TODO
-            raise NotImplementedError()
+            self._action_gain_coin(user, **data)
         elif action_type == 'buy_card':
             # TODO
             raise NotImplementedError()
@@ -279,3 +278,102 @@ class Game:
                   f" type of action.")
             print()
             return
+
+    def _action_gain_coin(self, user: User, **data):
+        print(f'[SYSTEM] Checking for prerequisites...')
+        coins_reserved = Counter()
+        coins_requested = Counter()
+        # Check coins that already have been taken
+        connection = database.connect_to_db()
+        coin_db_rows = connection.execute("""
+            SELECT
+                game_id,
+                component_id,
+                component_type,
+                src_id,
+                dst_id,
+                coin_type
+            FROM
+                game_transaction
+                LEFT JOIN
+                    coin
+            WHERE
+                game_id=? -- game.game_id
+                AND
+                component_type=? -- component_type.coin
+                AND
+                component_id=coin_id
+                AND
+                src_id is NULL
+                AND
+                dst_id is ? -- user.user_id
+        """, (self.game_id, COMPONENT_TYPE.COIN, user.db_row['user_id']))
+        for coin_db_row in coin_db_rows:
+            coins_reserved[coin_db_row['coin_type']] += 1
+        for key, value in data.items():
+            coin_type = COIN_TYPE.name2int(key)
+            coins_requested[coin_type] = value
+        # Analyse data
+        coins_to_reserve = coins_reserved + coins_requested
+        n_diff_coin_types = len(coins_to_reserve)
+        n_total_coins = sum(coins_to_reserve.values())
+        # Console logging
+        if sum(coins_reserved.values()) == 0:
+            print(f'[SYSTEM] * {user} has not gained any coin yet.')
+        else:
+            print(f'[SYSTEM] * {user} has taken')
+            for coin_type, amount in coins_reserved.items():
+                coin_name = COIN_TYPE.int2name(coin_type)
+                print(f'[SYSTEM]   * {coin_name} x{amount}')
+        print(f'[SYSTEM] * {user} requested following coins:')
+        for coin_type, amount in coins_requested.items():
+            coin_name = COIN_TYPE.int2name(coin_type)
+            print(f'[SYSTEM]   * {coin_name} x{amount}')
+        # Checking if the request is valid
+        if sum(coins_to_reserve.values()) > 3:
+            # Case of taking more than 3 coins a turn.
+            print(f'[ERROR] You can only gain coins less than 4 a turn.')
+            print(f"[ERROR] You've tried to gain {n_total_coins} coins.")
+            print()
+            return
+        elif len(coins_to_reserve) > 1 and coins_to_reserve.most_common(1)[0][1] > 2:
+            # Case of taking 2 or more diffrent types of coins,
+            # while taking 2 or more coins from same type.
+            print(f'[ERROR] You can either take 3 (or less) coins of'
+                  f' diffrent types, or take only 2 coins of same type.')
+            print()
+            return
+        print(f'[SYSTEM] Reserving coins...')
+        for coin_type, amount in coins_requested.items():
+            connection = database.connect_to_db()
+            connection.execute("""
+                INSERT INTO
+                    game_transaction
+                SELECT
+                    game_id,
+                    component_id,
+                    component_type,
+                    owner_id as src_id,
+                    1 as dst_id
+                FROM
+                    game_component
+                    LEFT JOIN
+                        coin
+                WHERE
+                    game_id=? -- game.game_id
+                    AND
+                    component_type=? -- component_type.coin
+                    AND
+                    coin_type=? -- coin_type
+                    AND
+                    component_id=coin_id
+                    AND
+                    owner_id is NULL
+                LIMIT
+                    ? -- amount
+            """, (self.game_id, COMPONENT_TYPE.COIN, coin_type, amount))
+        print(f'[SYSTEM] Reserved coins.')
+        print(f'[SYSTEM] Checking for end of a action.')
+        # TODO: Gold is unobtainable
+        # TODO: Should end the turn
+        # TODO: Should return the coin
