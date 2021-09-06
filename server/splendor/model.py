@@ -26,6 +26,10 @@ class COIN_TYPE(IntEnum):
                 return coin_type.name
         raise ValueError(f"Couldn't find the name of {value}.")
 
+    @classmethod
+    def name2int(cls, name: str) -> int:
+        return getattr(cls, name.upper())
+
 
 class GAME_STATE(IntEnum):
     PRE_GAME = auto()
