@@ -67,6 +67,7 @@ __all__ = [
     "connect_to_db",
     "setup_sample_data",
 
+    "execute",
     "select_one",
     "select_all",
     "insert_one",

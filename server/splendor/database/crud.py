@@ -7,6 +7,11 @@ from splendor.database import connect_to_db
 CONNECTION = connect_to_db()
 
 
+def execute(sql: str, *params):
+    cursor = CONNECTION.execute(sql, tuple(params))
+    return cursor.fetchall()
+
+
 def select_one(table_name: str, query: Dict[str, Any] = {}):
     sql = f"""
         SELECT
@@ -83,6 +88,7 @@ def delete_all(table_name: str, query: Dict[str, Any] = {}):
 
 
 __all__ = [
+    "execute",
     "select_one",
     "select_all",
     "insert_one",
