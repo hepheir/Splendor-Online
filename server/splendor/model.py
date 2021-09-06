@@ -19,6 +19,13 @@ class COIN_TYPE(IntEnum):
     RUBY = 4
     ONYX = 5
 
+    @classmethod
+    def int2name(cls, value: int) -> str:
+        for coin_type in COIN_TYPE:
+            if coin_type == value:
+                return coin_type.name
+        raise ValueError(f"Couldn't find the name of {value}.")
+
 
 class GAME_STATE(IntEnum):
     PRE_GAME = auto()
