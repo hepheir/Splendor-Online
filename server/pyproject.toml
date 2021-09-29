@@ -17,6 +17,7 @@ autopep8 = "^1.5.7"
 pylint = "^2.10.1"
 pre-commit = "^2.15.0"
 pytest = "^6.2.5"
+black = "^21.9b0"
 
 [tool.black]
 line-length = 79
