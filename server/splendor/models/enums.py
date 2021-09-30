@@ -15,6 +15,8 @@ class GEM_TYPE(IntEnum):
 class GAME_STATE(IntEnum):
     PRE_GAME = auto()
     SETTING_UP = auto()
+    IN_GAME = auto()
+    END_GAME = auto()
 
 
 class PLAYER_STATE(IntEnum):

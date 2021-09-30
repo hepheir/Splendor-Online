@@ -27,14 +27,20 @@ class _GemContainer(Item):
             raise KeyError(f"Couldn't find attribute {key}")
         return getattr(self, gem_type)
 
+    def amount(self, type: GEM_TYPE) -> int:
+        return len(self[type])
+
     def insert(self, type: GEM_TYPE, item: t.Any) -> None:
         self[type].append(item)
 
     def pop(self, type: GEM_TYPE) -> t.Any:
         return self[type].pop()
 
-    def amount(self, type: GEM_TYPE) -> int:
-        return len(self[type])
+    def total_amount(self) -> int:
+        cnt = 0
+        for gem_type in GEM_TYPE:
+            cnt += self.amount(gem_type)
+        return cnt
 
 
 class CardContainer(_GemContainer):
