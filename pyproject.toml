@@ -7,6 +7,11 @@ authors = ["Hepheir <hepheir@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 Flask = "^2.0.1"
+Flask-SocketIO = "^5.1.1"
+Flask-Login = "^0.5.0"
+Flask-SQLAlchemy = "^2.5.1"
+SQLAlchemy = "^1.4.25"
+blinker = "^1.4"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.15.0"
